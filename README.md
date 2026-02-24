@@ -1,146 +1,136 @@
-# StayEase — Smart Hostel, PG & Budget Hotel Booking Platform
+# StayEase 🏠
 
-A production-ready, unified full-stack booking and management platform built with **Next.js 16**. Features AI-powered recommendations, real-time availability, Razorpay payments, and comprehensive owner/admin dashboards.
+**Smart Hostel, PG & Budget Hotel Booking Platform**
+
+A full-stack Next.js application for booking hostels, PGs, co-living spaces, and budget hotels — with AI-powered recommendations, real-time availability, and Razorpay payments.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/YawarHussain672/StayEase)
 
 ---
 
-## 🚀 Tech Stack
+## Features
+
+- 🔐 **JWT Authentication** — Register, Login, Role-based access (User / Owner / Admin)
+- 🏨 **Property Listings** — Browse, filter by city, type, gender, price
+- 📅 **Booking System** — Book rooms, manage bookings, cancel with confirmation
+- 💳 **Razorpay Payments** — Real & mock payment support
+- 🤖 **AI Assistant** — OpenRouter-powered chat for property recommendations
+- 📊 **Owner Dashboard** — Manage properties, rooms, bookings, and complaints
+- 📝 **Reviews & Complaints** — Tenant feedback system
+- 🌙 **Dark Mode** — Full dark/light mode with glassmorphism design
+
+---
+
+## Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| **Framework** | Next.js 16 (App Router), React 19, TypeScript |
-| **API Architecture** | Next.js API Routes (Serverless) |
-| **Styling** | Tailwind CSS 4 |
-| **Animations** | Framer Motion, GSAP |
-| **State Management** | Zustand |
-| **Database** | MongoDB (Mongoose ODM with serverless caching) |
-| **Auth** | JWT (bcryptjs) |
-| **Payments** | Razorpay (UPI, cards, wallets) |
-| **AI** | OpenAI GPT (via OpenRouter) |
-| **Deployment** | Vercel (Frontend & Serverless API) |
+| Framework | Next.js 16 (App Router) |
+| Database | MongoDB Atlas (Mongoose) |
+| Auth | JWT + bcryptjs |
+| Payments | Razorpay |
+| AI | OpenRouter API |
+| Styling | Tailwind CSS v4 + Custom CSS |
+| State | Zustand |
+| Animations | Framer Motion, GSAP |
+| Deployment | Vercel |
 
 ---
 
-## ✨ Features
-
-### For Tenants / Guests
-- 🔍 Smart search with city, amenity, price, and gender filters
-- 🏠 Detailed property pages with image gallery, room selection, reviews
-- 📅 Instant booking with date-based availability
-- 💳 Razorpay-powered secure payments
-- 🤖 AI chatbot for booking guidance
-- 🌙 Dark / Light mode toggle
-- 📱 Fully responsive mobile-first design
-
-### For Property Owners
-- 📋 5-step property listing wizard
-- 📊 Revenue analytics & occupancy dashboard
-- 🛏️ Room and pricing management
-- 📈 AI-powered demand & pricing predictions
-
-### For Admins
-- 👥 User & owner management
-- ✅ Property verification queue
-- 🛡️ AI-assisted review moderation
-- 📞 Complaint resolution workflow
-
----
-
-## 📁 Project Structure
-
-```
-Overnight/
-├── src/
-│   ├── app/                 # Pages & API Routes (App Router)
-│   │   ├── api/             # Integrated Backend API
-│   │   │   ├── auth/        # Authentication handlers
-│   │   │   ├── properties/  # CRUD & filtration
-│   │   │   ├── bookings/    # Booking & availability
-│   │   │   ├── ai/          # AI-powered features
-│   │   │   └── ...
-│   │   └── ...
-│   ├── components/          # Reusable UI & Layouts
-│   ├── lib/                 # Shared utilities, DB connection & AI services
-│   ├── models/              # Mongoose schemas (Unified)
-│   └── store/               # Zustand state stores
-├── public/                  # Static assets
-└── vercel.json              # Vercel deployment config
-```
-
----
-
-## 🛠️ Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js ≥ 20
-- MongoDB (local or Atlas)
-- npm or yarn
+- Node.js 18+
+- MongoDB Atlas account
+- Razorpay account (test keys)
+- OpenRouter API key
 
-### 1. Clone the repo
-```bash
-git clone https://github.com/yourusername/stayease.git
-cd stayease
-```
+### Local Setup
 
-### 2. Installation
 ```bash
+# Clone the repo
+git clone https://github.com/YawarHussain672/StayEase.git
+cd StayEase/frontend
+
+# Install dependencies
 npm install
-```
 
-### 3. Environment Setup
-Create a `.env` file in the root directory and add your credentials:
-```bash
+# Configure environment variables
 cp .env.example .env
-```
+# Fill in your values (see Environment Variables below)
 
-### 4. Run Locally
-```bash
+# Run development server
 npm run dev
 ```
 
----
-
-## 🔑 Environment Variables
-
-| Variable | Description |
-|----------|-------------|
-| `MONGODB_URI` | MongoDB connection string |
-| `JWT_SECRET` | Secret key for JWT tokens |
-| `RAZORPAY_KEY_ID` | Razorpay API key |
-| `RAZORPAY_KEY_SECRET` | Razorpay API secret |
-| `OPENAI_API_KEY` | OpenAI API key (or OpenRouter key) |
-| `NEXT_PUBLIC_API_URL` | Set to `/api` for internal routing |
+Open [http://localhost:3000](http://localhost:3000).
 
 ---
 
-## 📡 API Endpoints (Next.js Routes)
+## Environment Variables
 
-| Group | Path | Auth |
-|-------|------|------|
-| Auth | `/api/auth` | Public / Protected |
-| Properties | `/api/properties` | Mixed |
-| Bookings | `/api/bookings` | Protected |
-| Reviews | `/api/reviews` | Mixed |
-| Complaints | `/api/complaints` | Protected |
-| Payments | `/api/payments` | Protected |
-| Dashboard | `/api/dashboard` | Protected (Owner/Admin) |
-| AI | `/api/ai` | Protected |
+Create `frontend/.env` with the following:
 
----
+```env
+NEXT_PUBLIC_API_URL=/api
 
-## 🚢 Deployment
+# MongoDB
+MONGO_URI=mongodb+srv://<user>:<password>@cluster.mongodb.net/stayease
 
-### Vercel (All-in-One)
-1. Import the repository on [vercel.com](https://vercel.com)
-2. Add all environment variables listed above.
-3. Deploy! Next.js will automatically handle the builds for both your UI and API serverless functions.
+# JWT
+JWT_SECRET=your_jwt_secret_here
+JWT_EXPIRE=7d
 
----
+# Razorpay
+RAZORPAY_KEY_ID=rzp_test_xxxx
+RAZORPAY_KEY_SECRET=your_razorpay_secret
 
-## 📜 License
+# AI (OpenRouter)
+OPENROUTER_API_KEY=sk-or-v1-xxxx
+```
 
-MIT © StayEase
+> ⚠️ Never commit your `.env` file. It is excluded by `.gitignore`.
 
 ---
 
-Built with ❤️ using Unified Next.js 16 + AI
+## Deploying to Vercel
+
+1. Push this repo to GitHub
+2. Import the project at [vercel.com/new](https://vercel.com/new)
+3. Set **Root Directory** to `frontend`
+4. Add all environment variables from `.env` in Vercel's dashboard
+5. Deploy 🚀
+
+---
+
+## Project Structure
+
+```
+StayEase/
+└── frontend/
+    ├── src/
+    │   ├── app/
+    │   │   ├── api/          # Next.js API Routes (backend)
+    │   │   │   ├── auth/     # Login, Register, Profile
+    │   │   │   ├── bookings/ # Booking CRUD, cancel, status
+    │   │   │   ├── properties/
+    │   │   │   ├── reviews/
+    │   │   │   ├── complaints/
+    │   │   │   ├── payments/ # Razorpay integration
+    │   │   │   ├── dashboard/
+    │   │   │   └── ai/       # OpenRouter AI chat
+    │   │   └── (main)/       # UI pages
+    │   ├── lib/
+    │   │   ├── db.ts         # MongoDB connection + model registration
+    │   │   ├── auth.ts       # JWT auth middleware (withAuth HOC)
+    │   │   └── api.ts        # Axios client
+    │   ├── models/           # Mongoose schemas
+    │   └── store/            # Zustand global state
+    └── public/
+```
+
+---
+
+## License
+
+MIT
