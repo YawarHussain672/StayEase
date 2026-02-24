@@ -24,6 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      {/* Inline script runs before React hydration — prevents dark mode flash */}
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('stayease-theme');if(t==='dark'){document.documentElement.classList.add('dark')}else{document.documentElement.classList.remove('dark');}}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body className="antialiased relative min-h-screen">
         <BackgroundOrbs />
         <Providers>
