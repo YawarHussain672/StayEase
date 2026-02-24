@@ -14,13 +14,14 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
     const [theme, setTheme] = useState<Theme>("light");
 
     useEffect(() => {
+        // Always respect stored user preference; default to light if not set
         const stored = localStorage.getItem("stayease-theme") as Theme;
-        if (stored) {
-            setTheme(stored);
-            document.documentElement.classList.toggle("dark", stored === "dark");
-        } else if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+        if (stored === "dark") {
             setTheme("dark");
             document.documentElement.classList.add("dark");
+        } else {
+            setTheme("light");
+            document.documentElement.classList.remove("dark");
         }
     }, []);
 
