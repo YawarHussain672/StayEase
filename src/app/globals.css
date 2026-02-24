@@ -1,6 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 @import "tailwindcss";
 
+/* Override Tailwind v4 default: use class-based dark mode not OS media query */
+@variant dark (&:where(.dark, .dark *));
+
 /* ═══════════════════════════════════════════
    LIQUID GLASS DESIGN SYSTEM
    Inspired by iOS 26 / visionOS liquid glass aesthetic
