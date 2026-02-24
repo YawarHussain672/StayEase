@@ -135,23 +135,20 @@ export default function HomePage() {
       {/* ════════ HERO ════════ */}
       <section className="relative min-h-[100vh] flex items-center overflow-hidden">
         {/* Carousel Background */}
-        <div className="absolute inset-0">
-          <AnimatePresence mode="popLayout">
-            <motion.img
-              key={heroIdx}
-              src={HERO_IMAGES[heroIdx]}
-              alt="StayEase hero"
-              initial={{ opacity: 0, scale: 1.08 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.2 }}
-              className="absolute inset-0 w-full h-full object-cover"
+        <div className="absolute inset-0 bg-slate-900">
+          {HERO_IMAGES.map((img, i) => (
+            <img
+              key={i}
+              src={img}
+              alt={`StayEase hero ${i}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-all duration-[1500ms] ease-in-out ${i === heroIdx ? "opacity-100 scale-100" : "opacity-0 scale-105"
+                }`}
             />
-          </AnimatePresence>
+          ))}
           <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/70 to-slate-900/40" />
 
           {/* Animated Background Blobs for Hero */}
-          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40 dark:opacity-30">
+          <div className="hidden sm:block absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40 dark:opacity-30">
             <div className="absolute top-1/4 -left-20 w-[500px] h-[500px] bg-purple-500/30 rounded-full mix-blend-screen filter blur-[120px] animate-blob" />
             <div className="absolute top-1/2 -right-20 w-[600px] h-[600px] bg-violet-500/30 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-2000" />
             <div className="absolute -bottom-20 left-1/3 w-[550px] h-[550px] bg-fuchsia-500/20 rounded-full mix-blend-screen filter blur-[120px] animate-blob animation-delay-4000" />
@@ -197,24 +194,25 @@ export default function HomePage() {
             </p>
 
             {/* Glass Search Bar (Water Drop Style) */}
-            <div className="glass-panel !rounded-full p-3 sm:p-2 sm:pl-6 flex flex-col sm:flex-row gap-4 sm:gap-2 max-w-xl items-center relative z-20 transition-transform hover:scale-[1.01] duration-300">
+            <div className="glass-panel !rounded-full p-1.5 sm:p-2 sm:pl-6 flex flex-row gap-2 max-w-xl items-center relative z-20 transition-transform hover:scale-[1.01] duration-300">
               <div className="relative flex-1 w-full flex items-center">
-                <MapPin className="absolute left-2 w-5 h-5 text-indigo-500 dark:text-indigo-300" />
+                <MapPin className="absolute left-3 w-5 h-5 text-indigo-500 dark:text-indigo-300" />
                 <input
                   type="text"
-                  placeholder="Enter city, area, or landmark..."
+                  placeholder="Enter city, area..."
                   value={search}
                   onChange={(e) => setSearch(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  className="w-full pl-10 pr-4 py-3 bg-transparent text-[var(--text-primary)] placeholder-[var(--text-muted)] font-medium border-none outline-none focus:ring-0"
+                  className="w-full pl-10 pr-2 py-2.5 sm:py-3 bg-transparent text-[var(--text-primary)] placeholder-[var(--text-muted)] font-medium border-none outline-none focus:ring-0 text-sm sm:text-base"
                 />
               </div>
               <button
                 onClick={handleSearch}
-                className="glass-btn-primary w-full sm:w-auto shadow-xl"
+                className="glass-btn-primary !p-3 sm:!px-6 sm:!py-3 shadow-xl shrink-0"
+                aria-label="Search"
               >
                 <Search className="w-5 h-5" />
-                Search
+                <span className="hidden sm:inline">Search</span>
               </button>
             </div>
 

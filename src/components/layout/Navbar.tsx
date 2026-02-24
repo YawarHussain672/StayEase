@@ -71,10 +71,10 @@ export default function Navbar() {
       ─────────────────────────────────────────────── */}
             <div className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-3 pointer-events-none">
                 <motion.div
-                    layout
+                    animate={{ maxWidth: isExpanded ? 1200 : 176 }}
                     transition={SPRING}
-                    className="pointer-events-auto relative"
-                    style={{ borderRadius: 9999, width: "100%", maxWidth: isExpanded ? 1200 : 176 }}
+                    className="pointer-events-auto relative w-full"
+                    style={{ borderRadius: 9999 }}
                 >
                     {/* Glass background */}
                     <motion.div
@@ -109,7 +109,6 @@ export default function Navbar() {
                             className="flex items-center gap-2 shrink-0"
                         >
                             <motion.div
-                                layout
                                 transition={SPRING}
                                 className="w-7 h-7 rounded-xl flex items-center justify-center shrink-0"
                                 animate={{ backgroundColor: isExpanded ? "#4f46e5" : "rgba(255,255,255,0.15)" }}
