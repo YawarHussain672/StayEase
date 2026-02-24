@@ -50,7 +50,7 @@ A full-stack Next.js application for booking hostels, PGs, co-living spaces, and
 ```bash
 # Clone the repo
 git clone https://github.com/YawarHussain672/StayEase.git
-cd StayEase/frontend
+cd StayEase
 
 # Install dependencies
 npm install
@@ -69,7 +69,7 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Environment Variables
 
-Create `frontend/.env` with the following:
+Create `.env` at the project root with the following:
 
 ```env
 NEXT_PUBLIC_API_URL=/api
@@ -97,7 +97,7 @@ OPENROUTER_API_KEY=sk-or-v1-xxxx
 
 1. Push this repo to GitHub
 2. Import the project at [vercel.com/new](https://vercel.com/new)
-3. Set **Root Directory** to `frontend`
+3. Do **NOT** set a Root Directory (leave as default root)
 4. Add all environment variables from `.env` in Vercel's dashboard
 5. Deploy 🚀
 
@@ -107,26 +107,25 @@ OPENROUTER_API_KEY=sk-or-v1-xxxx
 
 ```
 StayEase/
-└── frontend/
-    ├── src/
-    │   ├── app/
-    │   │   ├── api/          # Next.js API Routes (backend)
-    │   │   │   ├── auth/     # Login, Register, Profile
-    │   │   │   ├── bookings/ # Booking CRUD, cancel, status
-    │   │   │   ├── properties/
-    │   │   │   ├── reviews/
-    │   │   │   ├── complaints/
-    │   │   │   ├── payments/ # Razorpay integration
-    │   │   │   ├── dashboard/
-    │   │   │   └── ai/       # OpenRouter AI chat
-    │   │   └── (main)/       # UI pages
-    │   ├── lib/
-    │   │   ├── db.ts         # MongoDB connection + model registration
-    │   │   ├── auth.ts       # JWT auth middleware (withAuth HOC)
-    │   │   └── api.ts        # Axios client
-    │   ├── models/           # Mongoose schemas
-    │   └── store/            # Zustand global state
-    └── public/
+├── src/
+│   ├── app/
+│   │   ├── api/          # Next.js API Routes (backend)
+│   │   │   ├── auth/     # Login, Register, Profile
+│   │   │   ├── bookings/ # Booking CRUD, cancel, status
+│   │   │   ├── properties/
+│   │   │   ├── reviews/
+│   │   │   ├── complaints/
+│   │   │   ├── payments/ # Razorpay integration
+│   │   │   ├── dashboard/
+│   │   │   └── ai/       # OpenRouter AI chat
+│   │   └── (main)/       # UI pages
+│   ├── lib/
+│   │   ├── db.ts         # MongoDB connection + model registration
+│   │   ├── auth.ts       # JWT auth middleware (withAuth HOC)
+│   │   └── api.ts        # Axios client
+│   ├── models/           # Mongoose schemas
+│   └── store/            # Zustand global state
+└── public/
 ```
 
 ---
