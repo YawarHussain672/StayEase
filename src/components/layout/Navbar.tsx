@@ -82,10 +82,10 @@ export default function Navbar() {
                         animate={{
                             backgroundColor: isExpanded
                                 ? isDark ? "rgba(12,18,36,0.60)" : "rgba(255,255,255,0.55)"
-                                : "rgba(8,8,20,0.88)",
+                                : isDark ? "rgba(8,8,20,0.88)" : "rgba(255,255,255,0.82)",
                             borderColor: isExpanded
                                 ? isDark ? "rgba(255,255,255,0.10)" : "rgba(255,255,255,0.70)"
-                                : "rgba(255,255,255,0.18)",
+                                : isDark ? "rgba(255,255,255,0.18)" : "rgba(0,0,0,0.08)",
                         }}
                         style={{
                             borderRadius: "inherit",
@@ -111,13 +111,13 @@ export default function Navbar() {
                             <motion.div
                                 transition={SPRING}
                                 className="w-7 h-7 rounded-xl flex items-center justify-center shrink-0"
-                                animate={{ backgroundColor: isExpanded ? "#4f46e5" : "rgba(255,255,255,0.15)" }}
+                                animate={{ backgroundColor: isExpanded ? "#4f46e5" : isDark ? "rgba(255,255,255,0.15)" : "rgba(79,70,229,0.12)" }}
                             >
-                                <Building2 className="w-[14px] h-[14px] text-white" />
+                                <Building2 className="w-[14px] h-[14px]" style={{ color: isExpanded ? "#fff" : isDark ? "#fff" : "#4f46e5" }} />
                             </motion.div>
                             <span
                                 className="text-[13px] font-bold whitespace-nowrap"
-                                style={{ color: isExpanded ? (isDark ? "#f1f5f9" : "#0f172a") : "#fff" }}
+                                style={{ color: isExpanded ? (isDark ? "#f1f5f9" : "#0f172a") : isDark ? "#fff" : "#0f172a" }}
                             >
                                 Stay<span className="text-indigo-500">Ease</span>
                             </span>
@@ -157,7 +157,8 @@ export default function Navbar() {
                             {/* Compact: click to expand */}
                             {!isExpanded && (
                                 <button type="button" onClick={() => setManualExpand(true)}
-                                    className="w-7 h-7 rounded-full flex items-center justify-center text-white/70 hover:text-white transition-colors"
+                                    className="w-7 h-7 rounded-full flex items-center justify-center transition-colors"
+                                    style={{ color: isDark ? "rgba(255,255,255,0.7)" : "rgba(15,23,42,0.6)" }}
                                     aria-label="Open menu"
                                 >
                                     <Menu className="w-3.5 h-3.5" />
